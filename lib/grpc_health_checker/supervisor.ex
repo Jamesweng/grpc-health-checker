@@ -4,17 +4,14 @@ defmodule GrpcHealthChecker.Supervisor do
   use Supervisor
 
   def start_link(opts) do
-    Supervisor.start_link(__MODULE__, :ok, opts)
+    Supervisor.start_link(__MODULE__, opts, name: __MODULE__)
   end
 
-  def init(:ok) do
+  def init(opts) do
     children = [
-      worker(GrpcHealthChecker.Server, [[name: GrpcHealthChecker.Server]])
+      worker(GrpcHealthChecker.Server, opts)
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: GrpcHealthChecker.Supervisor]
-    Supervisor.init(children, opts)
+    Supervisor.init(children, strategy: :one_for_one)
   end
 end

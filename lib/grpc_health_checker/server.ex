@@ -14,11 +14,9 @@ defmodule GrpcHealthChecker.Server do
       |> Keyword.put_new(:compress, true)
       |> Enum.into(%{})
 
-    {:ok, pid} = :cowboy.start_clear(:http, [port: port], options)
+    {:ok, pid} = :cowboy.start_clear(__MODULE__, [port: port], options)
 
-    Logger.info(
-      "Running #{inspect(GrpcHealthChecker.Server)} with Cowboy using http://0.0.0.0:#{port}"
-    )
+    Logger.info("Running #{inspect(__MODULE__)} with Cowboy using http://0.0.0.0:#{port}")
 
     {:ok, pid}
   end
