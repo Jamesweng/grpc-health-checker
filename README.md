@@ -22,6 +22,19 @@ def deps do
 end
 ```
 
+In the `application.ex` or where you put the supervision tree
+
+```elixir
+import Supervisor.Spec
+
+children = [
+  supervisor(GrpcHealthChecker.Supervisor, [])
+]
+
+opts = [strategy: :one_for_one, name: Example.Supervisor]
+Supervisor.start_link(children, opts)
+```
+
 ## Configuration
 
 After installation, you will need to edit your `config/config.ex` to add the configurations for the gRPC Health Checker.
