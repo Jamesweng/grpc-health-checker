@@ -44,7 +44,9 @@ config :grpc_health_checker,
   port: 5001,
   path: "/healthz",
   grpc_server_url: "localhost:4000",
-  grpc_service_name: "grpc.health.v1.Health"
+  grpc_service_name: "grpc.health.v1.Health",
+  grpc_request_struct: Grpc.Health.V1.HealthCheckRequest,
+  grpc_stub: Grpc.Health.V1.Health.Stub
 ```
 
 ## Contributing
