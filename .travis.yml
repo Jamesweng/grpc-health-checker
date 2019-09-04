@@ -1,0 +1,33 @@
+sudo: false
+env:
+  - MIX_ENV=test
+language: elixir
+
+matrix:
+  include:
+    - elixir: "1.7"
+      otp_release: "21.0"
+    - elixir: "1.8"
+      otp_release: "21.0"
+    - elixir: "1.9"
+      otp_release: "22.0"
+
+before_cache:
+  - rm -rf _build/$MIX_HOME/lib
+
+cache:
+  directories:
+    - _build/$MIX_HOME
+
+script:
+  - mix compile --warnings-as-errors --force
+  - mix format --check-formatted
+  - mix credo --strict
+  - mix coveralls.json
+  - mix test
+
+after_script:
+  - mix inch.report
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

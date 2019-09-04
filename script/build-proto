@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -e
+
+echo "Building proto files..."
+
+protoc -I priv/protos --elixir_out=plugins=grpc:./lib/grpc_health_checker/ priv/protos/$1.proto
