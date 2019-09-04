@@ -4,7 +4,7 @@ defmodule GrpcHealthChecker.MixProject do
   def project do
     [
       app: :grpc_health_checker,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.8",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,

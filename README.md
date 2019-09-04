@@ -17,7 +17,7 @@ In the `mix.exs`:
 ```elixir
 def deps do
   [
-    {:grpc_health_checker, github: "hiveetoolkit/grpc-health-checker", tag: "v0.1.0"}
+    {:grpc_health_checker, github: "hiveetoolkit/grpc-health-checker", tag: "v0.1.1"}
   ]
 end
 ```
